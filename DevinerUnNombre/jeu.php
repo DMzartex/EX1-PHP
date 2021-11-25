@@ -1,21 +1,21 @@
 <?php 
 
-$nbr = $_GET['user_name'];
 $nombre = 44;
+$reponse = null;  
 
-if($nbr > $nombre){
-  $reponse = "Votre nombre est trop grand !";
-}elseif($nbr < $nombre){
-  $reponse = 'Votre nombre est trop petit !';
-}else{
-  $reponse = 'BRAVO vous avez gagnez !';
+if(!empty($_GET['user_name'])){
+  $nbr = htmlspecialchars($_GET['user_name']);
+  if($nbr > $nombre){
+    $reponse = "Votre nombre est trop grand !";
+  }elseif($nbr < $nombre){
+    $reponse = 'Votre nombre est trop petit !';
+  }else{
+    $reponse = 'BRAVO vous avez gagnez !';
+  }
 }
-
 ?>
-
-
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -32,9 +32,11 @@ if($nbr > $nombre){
     <?php require 'header.php' ?>
 
     <form action="jeu.php" method="get">
-        <label from="user_name">Entrer un nombre svp !</label>
-        <input type="number" id="user_name" name="user_name">
-        <input type="submit" value="Entrer">
+          <div class="form-group">
+              <label from="user_name">Entrer un nombre svp !</label>
+              <input class="form-control" type="number" id="user_name" name="user_name">
+              <input class="btn btn-primary mb-2" type="submit" value="Entrer">
+          </div>
     </form>
 
     <p><?= $reponse ?></p>
