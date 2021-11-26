@@ -1,17 +1,10 @@
 <?php 
-
-$nombre = 44;
-$reponse = null;  
+require 'function.php'
 
 if(!empty($_GET['user_name'])){
-  $nbr = htmlspecialchars($_GET['user_name']);
-  if($nbr > $nombre){
-    $reponse = "Votre nombre est trop grand !";
-  }elseif($nbr < $nombre){
-    $reponse = 'Votre nombre est trop petit !';
-  }else{
-    $reponse = 'BRAVO vous avez gagnez !';
-  }
+ 
+  DevinerNombre(44,);
+  
 }
 ?>
 <!doctype html>
@@ -39,7 +32,13 @@ if(!empty($_GET['user_name'])){
           </div>
     </form>
 
-    <p><?= $reponse ?></p>
+    <?php 
+
+      if(!empty($_GET['user_name'])){
+        affichage($reponse,$alert);
+      }
+    
+    ?>
 
     <?php require 'footer.php' ?>
     <!-- Optional JavaScript -->
