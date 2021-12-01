@@ -1,11 +1,6 @@
 <?php 
-require 'function.php'
+require 'function.php';
 
-if(!empty($_GET['user_name'])){
- 
-  DevinerNombre(44,);
-  
-}
 ?>
 <!doctype html>
 <html lang="fr">
@@ -32,13 +27,17 @@ if(!empty($_GET['user_name'])){
           </div>
     </form>
 
-    <?php 
+    <?php if(!empty($_GET['user_name'])): ?>
 
-      if(!empty($_GET['user_name'])){
-        affichage($reponse,$alert);
-      }
+    <?php if(!alert()):?>
+      <div class="alert alert-danger"><?= deviner_nombre() ?></div>
     
-    ?>
+    <?php else: ?>
+      <div class="alert alert-success"><?= deviner_nombre() ?></div>
+
+    <?php endif; ?>
+
+    <?php endif; ?>
 
     <?php require 'footer.php' ?>
     <!-- Optional JavaScript -->
