@@ -1,5 +1,16 @@
 <?php 
+session_start();
 require 'function.php';
+if(empty($_SESSION['nb_devine'])){
+  $_SESSION['nb_devine'] = GenerateNb();
+}
+
+if(!empty($_GET['nb'])){
+  $n = (int)$_GET['nb'];
+  $devine = (int)$_SESSION['nb_devine'];
+  $text = deviner_nombre($devine,$n);
+}
+
 
 ?>
 <!doctype html>
@@ -22,22 +33,23 @@ require 'function.php';
     <form action="jeu.php" method="get">
           <div class="form-group">
               <label from="user_name">Entrer un nombre svp !</label>
-              <input class="form-control" type="number" id="user_name" name="user_name">
+              <input class="form-control" type="number" id="nb" name="nb">
               <input class="btn btn-primary mb-2" type="submit" value="Entrer">
           </div>
     </form>
 
-    <?php if(!empty($_GET['user_name'])): ?>
+    <?php if(!empty($_GET['nb'])): ?>
 
     <?php if(!alert()):?>
-      <div class="alert alert-danger"><?= deviner_nombre() ?></div>
-    
+      <div class="alert alert-danger"><?= $text ?></div>
     <?php else: ?>
-      <div class="alert alert-success"><?= deviner_nombre() ?></div>
+      <div class="alert alert-success"><?= $text ?></div>
 
     <?php endif; ?>
 
     <?php endif; ?>
+
+    <a class="btn btn-primary" href="">Rejouer</a>
 
     <?php require 'footer.php' ?>
     <!-- Optional JavaScript -->
